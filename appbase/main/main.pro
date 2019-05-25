@@ -21,9 +21,8 @@
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 macx {
-    # osx
-    CONFIG += c++14
-    DEFINES += PAJLADA_SETTINGS_BOOST_OPTIONAL
+    # osx (Tested on macOS Mojave and High Sierra)
+    CONFIG += c++17
 } else {
     CONFIG += c++17
     win32-msvc* {
