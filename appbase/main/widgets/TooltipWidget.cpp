@@ -35,9 +35,8 @@ TooltipWidget::TooltipWidget(BaseWidget *parent)
                          Qt::X11BypassWindowManagerHint |
                          Qt::BypassWindowManagerHint);
 
-    // FIXME: Empty displayImage_ creates useless padding
+    displayImage_->hide();
     displayImage_->setAlignment(Qt::AlignHCenter);
-    displayImage_->setText(""); // FIXME: not sure if needed
     displayText_->setAlignment(Qt::AlignHCenter);
     displayText_->setText("tooltip text");
     auto layout = new QVBoxLayout();
@@ -89,8 +88,14 @@ void TooltipWidget::setWordWrap(bool wrap)
     this->displayText_->setWordWrap(wrap);
 }
 
+void TooltipWidget::clearImage()
+{
+    this->displayImage_->hide();
+}
+
 void TooltipWidget::setImage(QPixmap image)
 {
+    this->displayImage_->show();
     this->displayImage_->setPixmap(image);
 }
 

@@ -20,6 +20,7 @@ public:
 
     void setText(QString text);
     void setWordWrap(bool wrap);
+    void clearImage();
     void setImage(QPixmap image);
 
 #ifdef USEWINSDK
