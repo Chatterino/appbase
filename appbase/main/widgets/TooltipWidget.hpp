@@ -20,6 +20,7 @@ public:
 
     void setText(QString text);
     void setWordWrap(bool wrap);
+    void setImage(QPixmap image);
 
 #ifdef USEWINSDK
     void raise();
@@ -34,6 +35,7 @@ protected:
 private:
     void updateFont();
 
+    QLabel *displayImage_;
     QLabel *displayText_;
     pajlada::Signals::Connection fontChangedConnection_;
 };
