@@ -22,6 +22,7 @@ TooltipWidget *TooltipWidget::getInstance()
 
 TooltipWidget::TooltipWidget(BaseWidget *parent)
     : BaseWindow(parent, BaseWindow::TopMost)
+    , displayImage_(new QLabel())
     , displayText_(new QLabel())
 {
     this->setStyleSheet("color: #fff; background: #000");
@@ -34,10 +35,13 @@ TooltipWidget::TooltipWidget(BaseWidget *parent)
                          Qt::X11BypassWindowManagerHint |
                          Qt::BypassWindowManagerHint);
 
+    displayImage_->hide();
+    displayImage_->setAlignment(Qt::AlignHCenter);
     displayText_->setAlignment(Qt::AlignHCenter);
     displayText_->setText("tooltip text");
     auto layout = new QVBoxLayout();
     layout->setContentsMargins(10, 5, 10, 5);
+    layout->addWidget(displayImage_);
     layout->addWidget(displayText_);
     this->setLayout(layout);
 
@@ -82,6 +86,17 @@ void TooltipWidget::setText(QString text)
 void TooltipWidget::setWordWrap(bool wrap)
 {
     this->displayText_->setWordWrap(wrap);
+}
+
+void TooltipWidget::clearImage()
+{
+    this->displayImage_->hide();
+}
+
+void TooltipWidget::setImage(QPixmap image)
+{
+    this->displayImage_->show();
+    this->displayImage_->setPixmap(image);
 }
 
 void TooltipWidget::changeEvent(QEvent *)
